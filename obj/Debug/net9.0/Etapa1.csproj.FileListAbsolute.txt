@@ -1,0 +1,14 @@
+/Users/jorgemontoyaprieto/Desktop/GitHubRepos/Etapa1/bin/Debug/net9.0/Etapa1
+/Users/jorgemontoyaprieto/Desktop/GitHubRepos/Etapa1/bin/Debug/net9.0/Etapa1.deps.json
+/Users/jorgemontoyaprieto/Desktop/GitHubRepos/Etapa1/bin/Debug/net9.0/Etapa1.runtimeconfig.json
+/Users/jorgemontoyaprieto/Desktop/GitHubRepos/Etapa1/bin/Debug/net9.0/Etapa1.dll
+/Users/jorgemontoyaprieto/Desktop/GitHubRepos/Etapa1/bin/Debug/net9.0/Etapa1.pdb
+/Users/jorgemontoyaprieto/Desktop/GitHubRepos/Etapa1/obj/Debug/net9.0/Etapa1.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jorgemontoyaprieto/Desktop/GitHubRepos/Etapa1/obj/Debug/net9.0/Etapa1.AssemblyInfoInputs.cache
+/Users/jorgemontoyaprieto/Desktop/GitHubRepos/Etapa1/obj/Debug/net9.0/Etapa1.AssemblyInfo.cs
+/Users/jorgemontoyaprieto/Desktop/GitHubRepos/Etapa1/obj/Debug/net9.0/Etapa1.csproj.CoreCompileInputs.cache
+/Users/jorgemontoyaprieto/Desktop/GitHubRepos/Etapa1/obj/Debug/net9.0/Etapa1.dll
+/Users/jorgemontoyaprieto/Desktop/GitHubRepos/Etapa1/obj/Debug/net9.0/refint/Etapa1.dll
+/Users/jorgemontoyaprieto/Desktop/GitHubRepos/Etapa1/obj/Debug/net9.0/Etapa1.pdb
+/Users/jorgemontoyaprieto/Desktop/GitHubRepos/Etapa1/obj/Debug/net9.0/Etapa1.genruntimeconfig.cache
+/Users/jorgemontoyaprieto/Desktop/GitHubRepos/Etapa1/obj/Debug/net9.0/ref/Etapa1.dll
