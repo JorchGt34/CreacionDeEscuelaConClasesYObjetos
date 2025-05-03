@@ -14,7 +14,7 @@ namespace CoreEscuela.Entidades
         public int AñoDeCreación { get; set; }
         public string País { get; set; }
         public string Ciudad { get; set; }
-        private int myVar;
+        public TiposDeEscuela TipoEscuela{ get; set; }
         //public Escuela(string nombre, int año)
         //{
         //    this.nombre = nombre; //Donde this es miembro de la clase
@@ -24,6 +24,23 @@ namespace CoreEscuela.Entidades
         public Escuela(string nombre, int año)
         {
             (Nombre, AñoDeCreación) = (nombre, año);
+        }
+        public Escuela(string nombre, 
+                        int año, 
+                        TiposDeEscuela tipo, 
+                        string país = "", 
+                        string ciudad = "")
+        {
+            (Nombre, AñoDeCreación) = (nombre, año);
+            País = país;
+            Ciudad = ciudad;
+            TipoEscuela = tipo;
+        }
+
+        public override string ToString()//ToString era un objeto que imprime texto usando Console.WriteLine, haciendo un override a este objeto cambiamos lo que se imprime al usal un objeto
+        {
+            //Para poner caracteres especiales dentro de una cadena de texto se usa "\" seguido del caracter. También se puede usar System.Enviroment se obtiene el valor equivalente al sistema operativo.
+            return $"Nombre: \"{nombre}\", Tipo: {TipoEscuela} {System.Environment.NewLine}País: {País}, Ciudad: {Ciudad}";
         }
     }
 }
