@@ -28,17 +28,48 @@ namespace Etapa1
                 new Curso(){Nombre = "303"}
             }; //Aqui se registra un arreglo de 3 posiciones que contiene 3 datos de tipo curso
             ImprimirCursosEscuela(escuela);
+            bool pregunta = true;
+            int cantidad = 10;
+            if (pregunta == false)
+            {
+                WriteLine("Se cumplió la condición #1");
+            }
+            else if (cantidad > 15)
+            {
+                WriteLine("Se cumplió la condición #2");
+            }
+            else
+            {
+                WriteLine("No se cumplió ninguna condición");
+            }
+
+            if (cantidad > 5 && pregunta == false)
+            {
+                WriteLine("Se cumplió la condición #3");
+            }
+
+            if (cantidad > 5 && pregunta != false)
+            {
+                WriteLine("Se cumplió la condición #4");
+            }
+
+            if ((cantidad > 15 || !pregunta) && (cantidad % 5 == 0))
+            {
+                WriteLine("Se cumplió la condición #5");
+            }
         }
         private static void ImprimirCursosEscuela(Escuela escuela)
         {
             WriteLine("\n===============\n");
             WriteLine("Cursos de la escuela");
             WriteLine("\n===============\n");
-            
+
             if (escuela.Cursos == null || escuela == null)
             {
                 return;
-            } else {
+            }
+            else
+            {
                 foreach (var curso in escuela.Cursos)
                 {
                     WriteLine($"Nombre del curso: {curso.Nombre}, con un ID {curso.UniqueId}");
