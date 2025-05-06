@@ -30,32 +30,68 @@ namespace Etapa1
             escuela.Cursos = new List<Curso>(){
                 new Curso(){Nombre = "101", Jornada = TiposJornada.Mañana},
                 new Curso(){Nombre = "202", Jornada = TiposJornada.Mañana},
-                new Curso(){Nombre = "303", Jornada = TiposJornada.Mañana}                
+                new Curso(){Nombre = "303", Jornada = TiposJornada.Mañana}
             };
 
             //A las colecciones se le pueden agregar más elementos
-            escuela.Cursos.Add( new Curso(){ Nombre = "102", Jornada = TiposJornada.Tarde});
-            escuela.Cursos.Add( new Curso(){ Nombre = "202", Jornada = TiposJornada.Tarde});
+            escuela.Cursos.Add(new Curso() { Nombre = "102", Jornada = TiposJornada.Tarde });
+            escuela.Cursos.Add(new Curso() { Nombre = "202", Jornada = TiposJornada.Tarde });
 
             //Aparte de agregar más lementos individuales, se pueden agregar más listas
             var otraColeccion = new List<Curso>(){
                 new Curso(){Nombre = "401", Jornada = TiposJornada.Mañana},
                 new Curso(){Nombre = "501", Jornada = TiposJornada.Mañana},
-                new Curso(){Nombre = "502", Jornada = TiposJornada.Tarde} 
+                new Curso(){Nombre = "502", Jornada = TiposJornada.Tarde}
             };
 
+            //Curso temporal
+            Curso temporal = new Curso()
+            {
+                Nombre = "101 temporal",
+                Jornada = TiposJornada.Noche
+            };
+
+            //Se agrega una lista de elementos
             escuela.Cursos.AddRange(otraColeccion);
+
+            //Se agrega el curso temporal a los cursos el cual es solo un elemento
+            escuela.Cursos.Add(temporal);
+
+            ImprimirCursosEscuela(escuela);
+
+            WriteLine("==========");
+
+            //Ahora se remueve el elemento para comprobar que es posible
+            escuela.Cursos.Remove(temporal);
 
             //Es posible eliminar elementos de una colección o eliminar todos los elementos de una colección, donde el metodo Clear() elimina todos los elementos
             otraColeccion.Clear();
 
-            //Con remove se selecciona un elemento en especifico para removerlo
-            escuela.Cursos.Remove();
+            //También se pueden remover elementos segun una condición, donde se crea un valor delegado que sirve como filtro para recibir solo valores booleanos de una función
+            Predicate<Curso> miAlgoritmo = Predicado;
+
+            //Una vez el delegado tiene el valor booleano, se puede mandar al metodo RemoveAll para ser eliminado
+            escuela.Cursos.RemoveAll(miAlgoritmo); //Donde predicado es una función que devuelve un valor booleano
+
+
+
+            ImprimirCursosEscuela(escuela);
+
+            WriteLine("==========");
+            //WriteLine($"Curso.Hash {temporal.GetHashCode}"); Se usa para obtener su identificador unico
+
+
 
             //Se llama a la función que imprime los valores de la escuela
             ImprimirCursosEscuela(escuela);
         }
         //Se crean las funciones con las diferentes formas de uso
+
+        //La función Predicado checa cada curso y el que cumpla la condición será borrado
+        private static bool Predicado(Curso curobj)
+        {
+            return curobj.Nombre == "301";
+        }
         private static void ImprimirCursosEscuela(Escuela escuela) //Se pasa el valor de la variable escuela entera
         {
             WriteLine("\n===============\n");
