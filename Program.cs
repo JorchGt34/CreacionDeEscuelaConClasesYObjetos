@@ -1,7 +1,4 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using System.Timers;
-using static System.Console; //Un espacio de nombre que solo ocupa que escribamos WriteLine
+﻿using static System.Console; //Un espacio de nombre que solo ocupa que escribamos WriteLine
 using CoreEscuela.Entidades;
 using Etapa1.Entidades;
 
@@ -11,54 +8,55 @@ namespace Etapa1
     {
         static void Main(string[] args)
         {
+            //Creación de la escuela
             var escuela = new Escuela("uaa", 1980);
             escuela.País = "México";
             escuela.Ciudad = "Aguascalientes";
             escuela.TipoEscuela = TiposDeEscuela.Universidad; //Se usa un valor de tipo enumeración llamado tipos de escuela
+
+            //Se imprimen los valores de la escuela
             WriteLine(escuela.Nombre);
             WriteLine(escuela.País);
             WriteLine(escuela);
+
+            //Se crea un segundo objeto de escuela
             var escuelaDos = new Escuela("Platzi Academy", 2012, TiposDeEscuela.Preparatoria, ciudad: "Bogotá");//Los parametros opcionales pueden ser omitidos al poner el siguiente parametro seguudo de ":", o al no poner más parametros
             //Si no hay constructor, se pueden agregar valores de la siguiente manera
 
-            //Arreglos
-            escuela.Cursos = new Curso[]{
-                new Curso(){Nombre = "101"},
-                new Curso(){Nombre = "202"},
-                new Curso(){Nombre = "303"}
-            }; //Aqui se registra un arreglo de 3 posiciones que contiene 3 datos de tipo curso
+            //Uso de colecciones 
+            //System.Collections se usa para hacer colecciones
+
+            //La siguiente coleccion es generica y permite la eliminacion de espacios dentro de la coleccion, ó agregar espacios a la colección
+            escuela.Cursos = new List<Curso>(){
+                new Curso(){Nombre = "101", Jornada = TiposJornada.Mañana},
+                new Curso(){Nombre = "202", Jornada = TiposJornada.Mañana},
+                new Curso(){Nombre = "303", Jornada = TiposJornada.Mañana}                
+            };
+
+            //A las colecciones se le pueden agregar más elementos
+            escuela.Cursos.Add( new Curso(){ Nombre = "102", Jornada = TiposJornada.Tarde});
+            escuela.Cursos.Add( new Curso(){ Nombre = "202", Jornada = TiposJornada.Tarde});
+
+            //Aparte de agregar más lementos individuales, se pueden agregar más listas
+            var otraColeccion = new List<Curso>(){
+                new Curso(){Nombre = "401", Jornada = TiposJornada.Mañana},
+                new Curso(){Nombre = "501", Jornada = TiposJornada.Mañana},
+                new Curso(){Nombre = "502", Jornada = TiposJornada.Tarde} 
+            };
+
+            escuela.Cursos.AddRange(otraColeccion);
+
+            //Es posible eliminar elementos de una colección o eliminar todos los elementos de una colección, donde el metodo Clear() elimina todos los elementos
+            otraColeccion.Clear();
+
+            //Con remove se selecciona un elemento en especifico para removerlo
+            escuela.Cursos.Remove();
+
+            //Se llama a la función que imprime los valores de la escuela
             ImprimirCursosEscuela(escuela);
-            bool pregunta = true;
-            int cantidad = 10;
-            if (pregunta == false)
-            {
-                WriteLine("Se cumplió la condición #1");
-            }
-            else if (cantidad > 15)
-            {
-                WriteLine("Se cumplió la condición #2");
-            }
-            else
-            {
-                WriteLine("No se cumplió ninguna condición");
-            }
-
-            if (cantidad > 5 && pregunta == false)
-            {
-                WriteLine("Se cumplió la condición #3");
-            }
-
-            if (cantidad > 5 && pregunta != false)
-            {
-                WriteLine("Se cumplió la condición #4");
-            }
-
-            if ((cantidad > 15 || !pregunta) && (cantidad % 5 == 0))
-            {
-                WriteLine("Se cumplió la condición #5");
-            }
         }
-        private static void ImprimirCursosEscuela(Escuela escuela)
+        //Se crean las funciones con las diferentes formas de uso
+        private static void ImprimirCursosEscuela(Escuela escuela) //Se pasa el valor de la variable escuela entera
         {
             WriteLine("\n===============\n");
             WriteLine("Cursos de la escuela");

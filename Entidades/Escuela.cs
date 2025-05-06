@@ -1,4 +1,3 @@
-using System.Reflection.Metadata.Ecma335;
 using Etapa1.Entidades;
 
 namespace CoreEscuela.Entidades
@@ -21,7 +20,7 @@ namespace CoreEscuela.Entidades
         //    this.nombre = nombre; //Donde this es miembro de la clase
         //    AñoDeCreación = año;
         //} Esta es la manera de hacer la asignación de los valores de la misma manera que la función de abajo
-        public Curso[] Cursos { get; set; }
+        public List<Curso> Cursos { get; set; } //Ahora se inicia una lista genrica de cursos
         public Escuela(string nombre, int año)
         {
             (Nombre, AñoDeCreación) = (nombre, año);
