@@ -1,5 +1,6 @@
 ﻿using static System.Console; //Un espacio de nombre que solo ocupa que escribamos WriteLine
 using CoreEscuela.Entidades;
+using CoreEscuela.Util;
 
 namespace CoreEscuela
 {
@@ -13,15 +14,22 @@ namespace CoreEscuela
             //Usamos el metodo de inicializar para asignar los valores
             engine.Inicializar();
 
+            //Hacemos una clase que funciona como objeto por si misma para imprimir lineas segun la longitud que eligamos, por defecto lleva 10 de longitud
+            Printer.DibujarLinea();
+
+            //También se le puede asignar un tamaño diferente
+            Printer.DibujarLinea(20);
+
             //Ya una vez que la escuela de engine tiene iniciado los valores, es posible usarlos
             ImprimirCursosEscuela(engine.Escuela);
         }
         //Se crean las funciones con las diferentes formas de uso
         private static void ImprimirCursosEscuela(Escuela escuela) //Se pasa el valor de la variable escuela entera
         {
-            WriteLine("\n===============\n");
-            WriteLine("Cursos de la escuela");
-            WriteLine("\n===============\n");
+            WriteLine("\n");
+            Printer.DibujarTitulo("Bienvenidos a la escuela");
+            WriteLine("\n");
+            Printer.DibujarTitulo("Cursos de la escuela");
 
             if (escuela.Cursos == null || escuela == null)
             {
