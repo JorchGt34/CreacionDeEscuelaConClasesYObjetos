@@ -1,8 +1,6 @@
-using Etapa1.Entidades;
-
 namespace CoreEscuela.Entidades
 {
-    class Escuela
+    public class Escuela
     {
         string nombre;
         public string Nombre {
