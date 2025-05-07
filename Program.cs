@@ -68,12 +68,21 @@ namespace Etapa1
             otraColeccion.Clear();
 
             //También se pueden remover elementos segun una condición, donde se crea un valor delegado que sirve como filtro para recibir solo valores booleanos de una función
-            Predicate<Curso> miAlgoritmo = Predicado;
+            //Predicate<Curso> miAlgoritmo = Predicado;
+
+            //Ya no se declarara ya que este objeto ya viene incluido en C#
 
             //Una vez el delegado tiene el valor booleano, se puede mandar al metodo RemoveAll para ser eliminado
-            escuela.Cursos.RemoveAll(miAlgoritmo); //Donde predicado es una función que devuelve un valor booleano
+            //escuela.Cursos.RemoveAll(Predicado); //Donde predicado es una función que devuelve un valor booleano
 
-
+            //Ahora se puede poner la funcion como un parametro sin la necesidad de hacer una función aparte
+            escuela.Cursos.RemoveAll(delegate (Curso cur)
+            {
+                return cur.Nombre == "301";
+            });//RemoveAll recibe esta función como parametro al usar delegate 
+            
+            // También se puede simplificar sin usar delegate y usando la función flecha
+            escuela.Cursos.RemoveAll((cur) => cur.Nombre == "501" && cur.Jornada == TiposJornada.Mañana);
 
             ImprimirCursosEscuela(escuela);
 
@@ -86,12 +95,6 @@ namespace Etapa1
             ImprimirCursosEscuela(escuela);
         }
         //Se crean las funciones con las diferentes formas de uso
-
-        //La función Predicado checa cada curso y el que cumpla la condición será borrado
-        private static bool Predicado(Curso curobj)
-        {
-            return curobj.Nombre == "301";
-        }
         private static void ImprimirCursosEscuela(Escuela escuela) //Se pasa el valor de la variable escuela entera
         {
             WriteLine("\n===============\n");

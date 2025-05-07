@@ -12,3 +12,4 @@
 /Users/jorgemontoyaprieto/Desktop/GitHubRepos/Etapa1/obj/Debug/net9.0/Etapa1.pdb
 /Users/jorgemontoyaprieto/Desktop/GitHubRepos/Etapa1/obj/Debug/net9.0/Etapa1.genruntimeconfig.cache
 /Users/jorgemontoyaprieto/Desktop/GitHubRepos/Etapa1/obj/Debug/net9.0/ref/Etapa1.dll
+/Users/jorgemontoyaprieto/Desktop/GitHubRepos/Etapa1/obj/Debug/net9.0/Etapa1.sourcelink.json
