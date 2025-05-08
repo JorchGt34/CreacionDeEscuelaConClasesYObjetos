@@ -21,7 +21,7 @@ namespace CoreEscuela
 
         private void CargarEvaluaciones()
         {
-            throw new NotImplementedException();
+            
         }
 
         private void CargarAsignaturas()
@@ -70,6 +70,24 @@ namespace CoreEscuela
             {
                 int cantidadRandom = rnd.Next(5, 20);
                 curso.Alumno = GenerarAlumnosAlAzar(cantidadRandom).ToList();
+
+                double min = 0.0;
+                double max = 5.0;
+                foreach (var Alum in curso.Alumno)
+                {
+                    double cantidadDoubleRandom = min + (rnd.NextDouble() * (max - min));
+                    Alum.Evaluacion = new List<Evaluaciones>(){
+                        new Evaluaciones(){
+                            Nombre = "Nueva evaluación 2024",
+                            Alumno = Alum,
+                            Asignatura = new Asignatura(){
+                                Nombre = curso.Nombre.ToString()
+                            },
+                            Nota = cantidadDoubleRandom
+                        }
+
+                    };
+                }
             }
         }
     }
