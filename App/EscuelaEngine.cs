@@ -5,23 +5,14 @@ namespace CoreEscuela
 {
     public class EscuelaEngine
     {
-        public Escuela Escuela { get; set; }
-        public EscuelaEngine()
-        {
-                
-        }
+        public Escuela? Escuela { get; set; }
+
         public void Inicializar()
         {
             Escuela = new Escuela("Platzi Academy", 2012, TiposDeEscuela.Preparatoria, ciudad: "Bogotá");
 
             CargarCursos();
             CargarAsignaturas();
-            CargarEvaluaciones();
-        }
-
-        private void CargarEvaluaciones()
-        {
-            
         }
 
         private void CargarAsignaturas()
@@ -37,7 +28,6 @@ namespace CoreEscuela
                 curso.Asignaturas = listaAsignaturas;
             }
         }
-
         private IEnumerable<Alumnos> GenerarAlumnosAlAzar(int cantidadAlumnos)
         {
             string[] nombre1 = { "Jorge", "Leonel", "Eduardo", "Adrian", "Carolina" };
