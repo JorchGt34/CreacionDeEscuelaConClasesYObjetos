@@ -8,7 +8,7 @@ namespace CoreEscuela
         public Escuela Escuela { get; set; }
         public EscuelaEngine()
         {
-
+                
         }
         public void Inicializar()
         {
@@ -73,12 +73,16 @@ namespace CoreEscuela
 
                 double min = 0.0;
                 double max = 5.0;
+                int contador = 1;
                 foreach (var Alum in curso.Alumno)
                 {
                     double cantidadDoubleRandom = min + (rnd.NextDouble() * (max - min));
+                    //Tambien funciona:
+                    //double cantidadDoubleRandom = 5 * rnd.NextDouble() 
+                    //Funciona ya que el minimo siempre sera 0
                     Alum.Evaluacion = new List<Evaluaciones>(){
                         new Evaluaciones(){
-                            Nombre = "Nueva evaluación 2024",
+                            Nombre = $"Nueva evaluación #{contador}2024",
                             Alumno = Alum,
                             Asignatura = new Asignatura(){
                                 Nombre = curso.Nombre.ToString()
@@ -87,6 +91,7 @@ namespace CoreEscuela
                         }
 
                     };
+                    contador++;
                 }
             }
         }
