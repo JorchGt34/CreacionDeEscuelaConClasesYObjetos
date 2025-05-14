@@ -1,6 +1,7 @@
 ﻿using static System.Console; //Un espacio de nombre que solo ocupa que escribamos WriteLine
 using CoreEscuela.Entidades;
 using CoreEscuela.Util;
+using Etapa1;
 
 namespace CoreEscuela
 {
@@ -22,9 +23,11 @@ namespace CoreEscuela
 
             //Ya una vez que la escuela de engine tiene iniciado los valores, es posible usarlos
             ImprimirCursosEscuela(engine.Escuela);
+
+            // Aunque Objetovar obj = new ObjetoEscuelaClase();
         }
         //Se crean las funciones con las diferentes formas de uso
-        private static void ImprimirCursosEscuela(Escuela escuela) //Se pasa el valor de la variable escuela entera
+        private static void ImprimirCursosEscuela(Escuelas escuela) //Se pasa el valor de la variable escuela entera
         {
             WriteLine("\n");
             Printer.DibujarTitulo("Bienvenidos a la escuela");

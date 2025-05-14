@@ -1,9 +1,9 @@
 namespace Etapa1.Entidades
 {
-    public class Alumnos
+    //Al agregar ": ObjetoEscuelaClase" se heredan las prpiedades de ObjetoEscuelaClase
+    public class Alumnos: ObjetoEscuelaClase
     {
-        public string? UniqueId { get; set;}
-        public string Nombre { get; set ;} = Guid.NewGuid().ToString();
-        public List<Evaluaciones>? Evaluacion { get; set;}
+        //Se debe de inicializar una lista para poder empezar a poner ddatos en ella
+        public List<Evaluaciones>? Evaluacion { get; set;} = new List<Evaluaciones>();
     }
 }

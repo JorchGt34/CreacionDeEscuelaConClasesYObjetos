@@ -5,11 +5,11 @@ namespace CoreEscuela
 {
     public class EscuelaEngine
     {
-        public Escuela? Escuela { get; set; }
+        public Escuelas? Escuela { get; set; }
 
         public void Inicializar()
         {
-            Escuela = new Escuela("Platzi Academy", 2012, TiposDeEscuela.Preparatoria, ciudad: "Bogotá");
+            Escuela = new Escuelas("Platzi Academy", 2012, TiposDeEscuelas.Preparatoria, ciudad: "Bogotá");
 
             CargarCursos();
             CargarAsignaturas();
@@ -19,11 +19,11 @@ namespace CoreEscuela
         {
             foreach (var curso in Escuela.Cursos)
             {
-                List<Asignatura> listaAsignaturas = new List<Asignatura>(){
-                    new Asignatura(){Nombre = "Matemáticas"},
-                    new Asignatura(){Nombre = "Educación Física"},
-                    new Asignatura(){Nombre = "Español"},
-                    new Asignatura(){Nombre = "Ciencias Naturales"}
+                List<Asignaturas> listaAsignaturas = new List<Asignaturas>(){
+                    new Asignaturas(){Nombre = "Matemáticas"},
+                    new Asignaturas(){Nombre = "Educación Física"},
+                    new Asignaturas(){Nombre = "Español"},
+                    new Asignaturas(){Nombre = "Ciencias Naturales"}
                 };
                 curso.Asignaturas = listaAsignaturas;
             }
@@ -47,13 +47,13 @@ namespace CoreEscuela
         private void CargarCursos()
         {
 
-            Escuela.Cursos = new List<Curso>(){
-                new Curso(){Nombre = "101", Jornada = TiposJornada.Mañana},
-                new Curso(){Nombre = "202", Jornada = TiposJornada.Mañana},
-                new Curso(){Nombre = "303", Jornada = TiposJornada.Mañana},
-                new Curso(){Nombre = "401", Jornada = TiposJornada.Tarde},
-                new Curso(){Nombre = "501", Jornada = TiposJornada.Tarde},
-                new Curso(){Nombre = "502", Jornada = TiposJornada.Tarde}
+            Escuela.Cursos = new List<Cursos>(){
+                new Cursos(){Nombre = "101", Jornada = TiposJornadas.Mañana},
+                new Cursos(){Nombre = "202", Jornada = TiposJornadas.Mañana},
+                new Cursos(){Nombre = "303", Jornada = TiposJornadas.Mañana},
+                new Cursos(){Nombre = "401", Jornada = TiposJornadas.Tarde},
+                new Cursos(){Nombre = "501", Jornada = TiposJornadas.Tarde},
+                new Cursos(){Nombre = "502", Jornada = TiposJornadas.Tarde}
             };
             Random rnd = new Random();
             foreach (var curso in Escuela.Cursos)
@@ -63,25 +63,27 @@ namespace CoreEscuela
 
                 double min = 0.0;
                 double max = 5.0;
-                int contador = 1;
+
                 foreach (var Alum in curso.Alumno)
                 {
-                    double cantidadDoubleRandom = min + (rnd.NextDouble() * (max - min));
-                    //Tambien funciona:
-                    //double cantidadDoubleRandom = 5 * rnd.NextDouble() 
-                    //Funciona ya que el minimo siempre sera 0
-                    Alum.Evaluacion = new List<Evaluaciones>(){
-                        new Evaluaciones(){
-                            Nombre = $"Nueva evaluación #{contador}2024",
+                    for (int i = 0; i < 5; i++)
+                    {
+                        double cantidadDoubleRandom = min + (rnd.NextDouble() * (max - min));
+                        //Tambien funciona:
+                        //double cantidadDoubleRandom = 5 * rnd.NextDouble() 
+                        //Funciona ya que el minimo siempre sera 0
+                        var evaluacion = new Evaluaciones()
+                        {
+                            Nombre = $"Nueva evaluación #{i} del 2025",
                             Alumno = Alum,
-                            Asignatura = new Asignatura(){
+                            Asignatura = new Asignaturas()
+                            {
                                 Nombre = curso.Nombre.ToString()
                             },
                             Nota = cantidadDoubleRandom
-                        }
-
-                    };
-                    contador++;
+                        };
+                        Alum.Evaluacion.Add(evaluacion);
+                    }
                 }
             }
         }
