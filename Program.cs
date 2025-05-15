@@ -51,12 +51,40 @@ namespace CoreEscuela
 
             //Esto no es posible ya que el padre que hereda no puede ser asignado a un hijo, pero un objeto creado desde el padre se le puede asignar un hijo
             //alumnoTest = objDummy;
+            //Si se intenta asignar un objeto padre como hijo:
+            //alumnoTest = (Alumnos)objDummy
+            //Avanzara en el compilador, pero en ejecución aparecerá un error
+
+            var evaluación = new Evaluaciones(){
+                Nombre = "Evaluación de Math",
+                Nota = 4.5f
+            };
+            
+            Printer.DibujarTitulo("Evaluación");
+            WriteLine($"Evaluación: {evaluación.Nombre}");
+            WriteLine($"Nota: {evaluación.Nota}");
+            WriteLine(evaluación.UniqueId);
+            WriteLine(evaluación.GetType);
 
             //Al ser el mismo objeto es polimorfismo, por esta razón contienen el mismo ID unico
             Printer.DibujarTitulo("Objeto Escuela");
             WriteLine($"Alumno: {ob.Nombre}");
             WriteLine(ob.UniqueId);
-            WriteLine(alumnoTest.GetType);
+            WriteLine(ob.GetType);
+
+
+            ob = evaluación;
+            Printer.DibujarTitulo("Objeto Escuela con evaluación");
+            WriteLine($"Alumno: {ob.Nombre}");
+            WriteLine(ob.UniqueId);
+            WriteLine(ob.GetType);
+
+            //A pesar de que un objeto padre puede contener un hijo alumno y un hijo evaluación, un objeto alumno no puede tener asignado una evaluación y viceversa.
+            //alumnoTest = evaluación;
+            //Aunque se haga la conversión, una vez el programa sea ejecutado, un problema surgia
+            //alumnoTest = (Alumnos)evaluación;
+
+            //En si el polimorfismo permite que padres obtengan información de sus hijos
         }
         //Se crean las funciones con las diferentes formas de uso
         private static void ImprimirCursosEscuela(Escuelas escuela) //Se pasa el valor de la variable escuela entera
