@@ -2,6 +2,7 @@
 using CoreEscuela.Entidades;
 using CoreEscuela.Util;
 using Etapa1;
+using Etapa1.Entidades;
 
 namespace CoreEscuela
 {
@@ -25,6 +26,37 @@ namespace CoreEscuela
             ImprimirCursosEscuela(engine.Escuela);
 
             // Aunque Objetovar obj = new ObjetoEscuelaClase();
+            Printer.DibujarLinea(20);
+            Printer.DibujarTitulo("Pruebas de Polimorfimo");
+            Printer.DibujarLinea(20);
+            var alumnoTest = new Alumnos(){
+                Nombre = "Cicops"
+            };
+
+            //Como alumnoTest es heredado de ObjetoEscuelaClase es posible hacer la siguiente asignación
+            ObjetoEscuelaClase ob = alumnoTest;
+            Printer.DibujarTitulo("Alumno");
+            WriteLine($"Alumno: {alumnoTest.Nombre}");
+            WriteLine(alumnoTest.UniqueId);
+            WriteLine(alumnoTest.GetType);
+
+            var objDummy = new ObjetoEscuelaClase(){
+                Nombre = "Frank Underwood"
+            };
+
+            Printer.DibujarTitulo("Dummy");
+            WriteLine($"Alumno: {objDummy.Nombre}");
+            WriteLine(objDummy.UniqueId);
+            WriteLine(objDummy.GetType);
+
+            //Esto no es posible ya que el padre que hereda no puede ser asignado a un hijo, pero un objeto creado desde el padre se le puede asignar un hijo
+            //alumnoTest = objDummy;
+
+            //Al ser el mismo objeto es polimorfismo, por esta razón contienen el mismo ID unico
+            Printer.DibujarTitulo("Objeto Escuela");
+            WriteLine($"Alumno: {ob.Nombre}");
+            WriteLine(ob.UniqueId);
+            WriteLine(alumnoTest.GetType);
         }
         //Se crean las funciones con las diferentes formas de uso
         private static void ImprimirCursosEscuela(Escuelas escuela) //Se pasa el valor de la variable escuela entera
