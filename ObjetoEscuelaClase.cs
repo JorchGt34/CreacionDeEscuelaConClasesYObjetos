@@ -11,5 +11,10 @@ namespace Etapa1
         public ObjetoEscuelaClase() {
             UniqueId = Guid.NewGuid().ToString();
         }
+        //Ya que todos los objetos tienen el metodo ToString(), este puede ser sobre-escrito para realizar algo diferente
+        public override string ToString()
+        {
+            return $"Nombre: {Nombre}, Unique ID: {UniqueId}";
+        }
     }
 }
