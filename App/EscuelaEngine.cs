@@ -1,4 +1,5 @@
 using CoreEscuela.Entidades;
+using Etapa1;
 using Etapa1.Entidades;
 
 namespace CoreEscuela
@@ -86,6 +87,25 @@ namespace CoreEscuela
                     }
                 }
             }
+        }
+
+        public List<ObjetoEscuelaClase> ObtenerObjetosEscuela()
+        {
+            var listaObj = new List<ObjetoEscuelaClase>();
+            //"Add" agrega un objeto, y "AddRange" agrega una lista de objetos
+            listaObj.Add(Escuela);
+            listaObj.AddRange(Escuela.Cursos);
+
+            foreach (var curso in Escuela.Cursos)
+            {
+                listaObj.AddRange(curso.Asignaturas);
+                listaObj.AddRange(curso.Alumno);
+                foreach (var alumno in curso.Alumno)
+                {
+                    listaObj.AddRange(alumno.Evaluacion);
+                }
+            }
+            return listaObj;
         }
     }
 }
