@@ -85,6 +85,23 @@ namespace CoreEscuela
             //alumnoTest = (Alumnos)evaluación;
 
             //En si el polimorfismo permite que padres obtengan información de sus hijos
+
+            //La manera en la que podemos hacer polimorfismo sin fallar en el intento es hacer validaciones donde se compruebe que un objeto cumple los requisitos para recibir otro objeto
+
+            //En este caso, como "ob" no es alumno, no se ejecuta el código dentro de la condición
+            if(ob is Alumnos){
+                Alumnos alumnoRecuperado = (Alumnos)ob;
+                WriteLine("El alumno ha sido recuperado");
+            }
+
+            //También se puede usar la palabra clave "as" el cual introduce a alumnoRecuperado2 la variable "ob" si es de tipo "Alumnos"
+            Alumnos alumnorecuperado2 = ob as Alumnos;
+            WriteLine(alumnorecuperado2); //Como contiene null no se ejecutara
+
+            //También se puede verificar de la siguiente forma
+            if(alumnorecuperado2 != null){
+                WriteLine("Doble verificación extosa");
+            }
         }
         //Se crean las funciones con las diferentes formas de uso
         private static void ImprimirCursosEscuela(Escuelas escuela) //Se pasa el valor de la variable escuela entera
