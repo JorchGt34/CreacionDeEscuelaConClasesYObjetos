@@ -15,20 +15,6 @@ namespace CoreEscuela
             CargarCursos();
             CargarAsignaturas();
         }
-
-        private void CargarAsignaturas()
-        {
-            foreach (var curso in Escuela.Cursos)
-            {
-                List<Asignaturas> listaAsignaturas = new List<Asignaturas>(){
-                    new Asignaturas(){Nombre = "Matemáticas"},
-                    new Asignaturas(){Nombre = "Educación Física"},
-                    new Asignaturas(){Nombre = "Español"},
-                    new Asignaturas(){Nombre = "Ciencias Naturales"}
-                };
-                curso.Asignaturas = listaAsignaturas;
-            }
-        }
         private IEnumerable<Alumnos> GenerarAlumnosAlAzar(int cantidadAlumnos)
         {
             string[] nombre1 = { "Jorge", "Leonel", "Eduardo", "Adrian", "Carolina" };
@@ -43,6 +29,38 @@ namespace CoreEscuela
                                select new Alumnos { Nombre = $"{n1} {n2} {a1}" };
 
             return listaAlumnos.OrderBy((al) => al.UniqueId).Take(cantidadAlumnos);
+        }
+        public List<ObjetoEscuelaClase> ObtenerObjetosEscuela()
+        {
+            var listaObj = new List<ObjetoEscuelaClase>();
+            //"Add" agrega un objeto, y "AddRange" agrega una lista de objetos
+            listaObj.Add(Escuela);
+            listaObj.AddRange(Escuela.Cursos);
+
+            foreach (var curso in Escuela.Cursos)
+            {
+                listaObj.AddRange(curso.Asignaturas);
+                listaObj.AddRange(curso.Alumno);
+                foreach (var alumno in curso.Alumno)
+                {
+                    listaObj.AddRange(alumno.Evaluacion);
+                }
+            }
+            return listaObj;
+        }
+        #region Metodos de carga
+        private void CargarAsignaturas()
+        {
+            foreach (var curso in Escuela.Cursos)
+            {
+                List<Asignaturas> listaAsignaturas = new List<Asignaturas>(){
+                    new Asignaturas(){Nombre = "Matemáticas"},
+                    new Asignaturas(){Nombre = "Educación Física"},
+                    new Asignaturas(){Nombre = "Español"},
+                    new Asignaturas(){Nombre = "Ciencias Naturales"}
+                };
+                curso.Asignaturas = listaAsignaturas;
+            }
         }
 
         private void CargarCursos()
@@ -88,24 +106,6 @@ namespace CoreEscuela
                 }
             }
         }
-
-        public List<ObjetoEscuelaClase> ObtenerObjetosEscuela()
-        {
-            var listaObj = new List<ObjetoEscuelaClase>();
-            //"Add" agrega un objeto, y "AddRange" agrega una lista de objetos
-            listaObj.Add(Escuela);
-            listaObj.AddRange(Escuela.Cursos);
-
-            foreach (var curso in Escuela.Cursos)
-            {
-                listaObj.AddRange(curso.Asignaturas);
-                listaObj.AddRange(curso.Alumno);
-                foreach (var alumno in curso.Alumno)
-                {
-                    listaObj.AddRange(alumno.Evaluacion);
-                }
-            }
-            return listaObj;
-        }
+        #endregion
     }
 }
