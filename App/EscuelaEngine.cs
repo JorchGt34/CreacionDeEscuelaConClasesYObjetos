@@ -30,20 +30,43 @@ namespace CoreEscuela
 
             return listaAlumnos.OrderBy((al) => al.UniqueId).Take(cantidadAlumnos);
         }
-        public List<ObjetoEscuelaClase> ObtenerObjetosEscuela()
+        public List<ObjetoEscuelaClase> ObtenerObjetosEscuela(
+            out int conteoCursos,
+            out int conteoAsignaturas,
+            out int conteoAlumnos,
+            out int conteoEvaluaciones,
+            bool traeCursos = true,
+            bool traeAsignaturas = true,
+            bool traeAlumnos = true,
+            bool traeEvaluaciones = true
+            )
         {
+            conteoCursos = conteoAsignaturas = conteoAlumnos = conteoEvaluaciones = 0;
+
             var listaObj = new List<ObjetoEscuelaClase>();
             //"Add" agrega un objeto, y "AddRange" agrega una lista de objetos
-            listaObj.Add(Escuela);
-            listaObj.AddRange(Escuela.Cursos);
+            listaObj.AddRange(Escuela);
 
-            foreach (var curso in Escuela.Cursos)
-            {
-                listaObj.AddRange(curso.Asignaturas);
-                listaObj.AddRange(curso.Alumno);
-                foreach (var alumno in curso.Alumno)
+            if(traeCursos){
+                listaObj.AddRange(Escuela.Cursos);
+                conteoCursos += Escuela.Cursos.Count;
+                foreach (var curso in Escuela.Cursos)
                 {
-                    listaObj.AddRange(alumno.Evaluacion);
+                    if(traeAsignaturas){
+                        listaObj.AddRange(curso.Asignaturas);
+                        conteoAsignaturas += curso.Asignaturas.Count;
+                    }
+                    if(traeAlumnos){
+                        listaObj.AddRange(curso.Alumno);
+                        conteoAlumnos += curso.Alumno.Count;
+                    }
+                    if(traeEvaluaciones){
+                        foreach (var alumno in curso.Alumno)
+                        {
+                            listaObj.AddRange(alumno.Evaluacion);
+                            conteoEvaluaciones += alumno.Evaluacion.Count;
+                        }
+                    }
                 }
             }
             return listaObj;
