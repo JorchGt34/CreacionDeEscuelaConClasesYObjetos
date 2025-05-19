@@ -26,7 +26,12 @@ namespace CoreEscuela
             ImprimirCursosEscuela(engine.Escuela);
 
             //var listaDeObj = engine.ObtenerObjetosEscuela(traeEvaluaciones: false);
-            var listaDeObj = engine.ObtenerObjetosEscuela(traeAlumnos: false, traeAsignaturas: false, traeCursos: false);
+            var listaDeObj = engine.ObtenerObjetosEscuela(
+            out int conteoCursos,
+            out int conteoAsignaturas,
+            out int conteoAlumnos,
+            out int conteoEvaluaciones
+            );
             WriteLine("Pausa");
 
             
