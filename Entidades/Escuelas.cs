@@ -1,13 +1,16 @@
-using System.Xml;
+using CoreEscuela.Util;
 using Etapa1;
+using Etapa1.Entidades;
+using static System.Console;
 
 namespace CoreEscuela.Entidades
 {
-    public class Escuelas: ObjetoEscuelaClase
+    public class Escuelas: ObjetoEscuelaClase, ILugar
     {
         public int AñoDeCreación { get; set; }
         public string País { get; set; }
         public string Ciudad { get; set; }
+        public string Dirección { get; set; }
         public TiposDeEscuelas TipoEscuela{ get; set; }
         //public Escuela(string nombre, int año)
         //{
@@ -35,6 +38,17 @@ namespace CoreEscuela.Entidades
         {
             //Para poner caracteres especiales dentro de una cadena de texto se usa "\" seguido del caracter. También se puede usar System.Enviroment se obtiene el valor equivalente al sistema operativo.
             return $"Nombre: \"{Nombre}\", Tipo: {TipoEscuela} {System.Environment.NewLine}País: {País}, Ciudad: {Ciudad}";
+        }
+        //Aqui se implementa la herencia de una interfaz llamada ILugar, donde 
+        public void LimpiarLugar()
+        {
+            Printer.DibujarLinea();
+            WriteLine("Limpiando escuela...");
+            foreach (var curso in Cursos)
+            {
+                curso.LimpiarLugar();
+            }
+            WriteLine($"Escuela {Nombre} limpio");
         }
     }
 }

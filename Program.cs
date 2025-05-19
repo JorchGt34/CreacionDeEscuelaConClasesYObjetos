@@ -26,7 +26,12 @@ namespace CoreEscuela
             ImprimirCursosEscuela(engine.Escuela);
 
             var listaDeObj = engine.ObtenerObjetosEscuela();
-            WriteLine("Pausa");
+            
+            //Usar el polimorfismo como se menciono puede hacer errores silenciosos cuando se hace lo siguiente:
+            var listaILugar = from obj in listaDeObj 
+                where obj is Alumnos 
+                select (Alumnos)obj;
+            //Por este motivo se verifican los datos usando from, where, select para solo obtener los datos que nos son utiles
         }
         //Se crean las funciones con las diferentes formas de uso
         private static void ImprimirCursosEscuela(Escuelas escuela) //Se pasa el valor de la variable escuela entera
