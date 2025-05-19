@@ -31,6 +31,47 @@ namespace CoreEscuela
             return listaAlumnos.OrderBy((al) => al.UniqueId).Take(cantidadAlumnos);
         }
         public List<ObjetoEscuelaClase> ObtenerObjetosEscuela(
+            bool traeCursos = true,
+            bool traeAsignaturas = true,
+            bool traeAlumnos = true,
+            bool traeEvaluaciones = true
+            )
+        {return ObtenerObjetosEscuela(out int dummy, out dummy, out dummy, out dummy);}
+        public List<ObjetoEscuelaClase> ObtenerObjetosEscuela(
+            out int conteoEvaluaciones,
+            bool traeCursos = true,
+            bool traeAsignaturas = true,
+            bool traeAlumnos = true,
+            bool traeEvaluaciones = true
+            )
+        {return ObtenerObjetosEscuela(out conteoEvaluaciones, out int dummy, out dummy, out dummy);}
+        public List<ObjetoEscuelaClase> ObtenerObjetosEscuela(
+            out int conteoEvaluaciones,
+            out int conteoAsignaturas,
+            bool traeCursos = true,
+            bool traeAsignaturas = true,
+            bool traeAlumnos = true,
+            bool traeEvaluaciones = true
+            )
+        {return ObtenerObjetosEscuela(out conteoEvaluaciones, out conteoAsignaturas, out int dummy, out dummy);}
+        public List<ObjetoEscuelaClase> ObtenerObjetosEscuela(
+            out int conteoEvaluaciones,
+            out int conteoAsignaturas,
+            out int conteoCursos,
+            bool traeCursos = true,
+            bool traeAsignaturas = true,
+            bool traeAlumnos = true,
+            bool traeEvaluaciones = true
+            )
+        {return ObtenerObjetosEscuela(out conteoEvaluaciones, out conteoAsignaturas, out conteoCursos, out int dummy);}
+        public List<ObjetoEscuelaClase> ObtenerObjetosEscuela(
+            out int conteoEvaluaciones,
+            out int conteoAsignaturas,
+            out int conteoCursos,
+            out int conteoAlumnos,
+            )
+        {return ObtenerObjetosEscuela(out conteoEvaluaciones, out conteoAsignaturas, out conteoCursos, out conteoAlumnos);}
+        public List<ObjetoEscuelaClase> ObtenerObjetosEscuela(
             out int conteoCursos,
             out int conteoAsignaturas,
             out int conteoAlumnos,
