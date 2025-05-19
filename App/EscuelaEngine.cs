@@ -30,14 +30,14 @@ namespace CoreEscuela
 
             return listaAlumnos.OrderBy((al) => al.UniqueId).Take(cantidadAlumnos);
         }
-        public List<ObjetoEscuelaClase> ObtenerObjetosEscuela(
+        public IReadOnlyList<ObjetoEscuelaClase> ObtenerObjetosEscuela(
             bool traeCursos = true,
             bool traeAsignaturas = true,
             bool traeAlumnos = true,
             bool traeEvaluaciones = true
             )
         {return ObtenerObjetosEscuela(out int dummy, out dummy, out dummy, out dummy);}
-        public List<ObjetoEscuelaClase> ObtenerObjetosEscuela(
+        public IReadOnlyList<ObjetoEscuelaClase> ObtenerObjetosEscuela(
             out int conteoEvaluaciones,
             bool traeCursos = true,
             bool traeAsignaturas = true,
@@ -45,7 +45,7 @@ namespace CoreEscuela
             bool traeEvaluaciones = true
             )
         {return ObtenerObjetosEscuela(out conteoEvaluaciones, out int dummy, out dummy, out dummy);}
-        public List<ObjetoEscuelaClase> ObtenerObjetosEscuela(
+        public IReadOnlyList<ObjetoEscuelaClase> ObtenerObjetosEscuela(
             out int conteoEvaluaciones,
             out int conteoAsignaturas,
             bool traeCursos = true,
@@ -54,7 +54,7 @@ namespace CoreEscuela
             bool traeEvaluaciones = true
             )
         {return ObtenerObjetosEscuela(out conteoEvaluaciones, out conteoAsignaturas, out int dummy, out dummy);}
-        public List<ObjetoEscuelaClase> ObtenerObjetosEscuela(
+        public IReadOnlyList<ObjetoEscuelaClase> ObtenerObjetosEscuela(
             out int conteoEvaluaciones,
             out int conteoAsignaturas,
             out int conteoCursos,
@@ -64,14 +64,14 @@ namespace CoreEscuela
             bool traeEvaluaciones = true
             )
         {return ObtenerObjetosEscuela(out conteoEvaluaciones, out conteoAsignaturas, out conteoCursos, out int dummy);}
-        public List<ObjetoEscuelaClase> ObtenerObjetosEscuela(
+        public IReadOnlyList<ObjetoEscuelaClase> ObtenerObjetosEscuela(
             out int conteoEvaluaciones,
             out int conteoAsignaturas,
             out int conteoCursos,
-            out int conteoAlumnos,
+            out int conteoAlumnos
             )
         {return ObtenerObjetosEscuela(out conteoEvaluaciones, out conteoAsignaturas, out conteoCursos, out conteoAlumnos);}
-        public List<ObjetoEscuelaClase> ObtenerObjetosEscuela(
+        public IReadOnlyList<ObjetoEscuelaClase> ObtenerObjetosEscuela(
             out int conteoCursos,
             out int conteoAsignaturas,
             out int conteoAlumnos,
@@ -110,7 +110,7 @@ namespace CoreEscuela
                     }
                 }
             }
-            return listaObj;
+            return listaObj.AsReadOnly();
         }
         #region Metodos de carga
         private void CargarAsignaturas()

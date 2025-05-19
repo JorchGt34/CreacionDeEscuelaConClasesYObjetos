@@ -26,15 +26,8 @@ namespace CoreEscuela
             ImprimirCursosEscuela(engine.Escuela);
 
             //var listaDeObj = engine.ObtenerObjetosEscuela(traeEvaluaciones: false);
-            var listaDeObj = engine.ObtenerObjetosEscuela(
-            out int conteoCursos,
-            out int conteoAsignaturas,
-            out int conteoAlumnos,
-            out int conteoEvaluaciones
-            );
+            var listaDeObj = engine.ObtenerObjetosEscuela();
             WriteLine("Pausa");
-
-            
         }
         //Se crean las funciones con las diferentes formas de uso
         private static void ImprimirCursosEscuela(Escuelas escuela) //Se pasa el valor de la variable escuela entera
