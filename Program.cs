@@ -27,6 +27,37 @@ namespace CoreEscuela
 
             //var listaDeObj = engine.ObtenerObjetosEscuela(traeEvaluaciones: false);
             var listaDeObj = engine.ObtenerObjetosEscuela();
+
+            //Los diccionarios son una lista de un valor llave y un valor cadena
+            Dictionary<int, string> diccionario = new Dictionary<int, string>();
+            diccionario.Add(10, "Juank");
+            diccionario.Add(23, "Lorem Ipsum");
+            diccionario.Add(0, "Valor 0");
+
+            foreach (var keyValPair in diccionario)
+            {
+                WriteLine($"Key: {keyValPair.Key}, Valor: {keyValPair.Value}");
+            }
+            Printer.DibujarTitulo("Acceso a Diccionario");
+
+            //La posicion del diccionario es la llave "key" que tiene asignado un valor, es decir el valor entero que tiene el diccionario junto con el valor deseado
+            WriteLine(diccionario[23]);
+            WriteLine(diccionario[0]);
+
+            Printer.DibujarTitulo("Otro diccionario");
+
+            //El valor llave que se asigna como la posicion en un diccionario tambien puede ser una cadena de texto y no solo un entero
+            var dic = new Dictionary<string, string>();
+            dic["Luna"] = "Cuerpo celeste que gira alrededor de la tierra";
+            WriteLine(dic["Luna"]);
+
+            //Los valores dentro de un diccionario también pueden ser reasignados
+            dic["Luna"] = "Protagonista de soy luna";
+            WriteLine(dic["Luna"]);
+
+            //La llave de un diccionario no se puede reasignar como si se puede reasignar su contenido
+            //dic.Add("Luna", "Protagonista de Soy Luna");
+
             WriteLine("Pausa");
         }
         //Se crean las funciones con las diferentes formas de uso

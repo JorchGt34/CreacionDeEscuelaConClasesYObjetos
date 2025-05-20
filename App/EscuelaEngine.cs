@@ -15,6 +15,8 @@ namespace CoreEscuela
             CargarCursos();
             CargarAsignaturas();
         }
+        //Diccionarios
+        
         private IEnumerable<Alumnos> GenerarAlumnosAlAzar(int cantidadAlumnos)
         {
             string[] nombre1 = { "Jorge", "Leonel", "Eduardo", "Adrian", "Carolina" };
