@@ -17,11 +17,11 @@ namespace CoreEscuela
         }
         //Diccionarios
         //Este metodo crea un diccionario que contiene la escuela y las clases en dos espacios separados dentro de la variable, pero el metodo recibe un objeto escuela que no es compatible con el objeto cursos que le estamos dando, por esta razon se utiliza un cast para poder convertir estos tipos ya que sabemos que si son compatibles por medio de polimorfismo
-        public Dictionary<string, IEnumerable<ObjetoEscuelaClase>> ObtenerDiccionarioObjetos(){
-            var dicccionario = new Dictionary<string, IEnumerable<ObjetoEscuelaClase>>();
-
-            dicccionario.Add("Escuela", new[] {Escuela});
-            dicccionario.Add("Cursos", Escuela.Cursos.Cast<ObjetoEscuelaClase>());
+        public Dictionary<LlavesDiccionario, IEnumerable<ObjetoEscuelaClase>> ObtenerDiccionarioObjetos(){
+            
+            var dicccionario = new Dictionary<LlavesDiccionario, IEnumerable<ObjetoEscuelaClase>>();
+            dicccionario.Add(LlavesDiccionario.Escuela, new[] {Escuela});
+            dicccionario.Add(LlavesDiccionario.Cursos, Escuela.Cursos.Cast<ObjetoEscuelaClase>());
             return dicccionario;
         }
         private IEnumerable<Alumnos> GenerarAlumnosAlAzar(int cantidadAlumnos)
