@@ -38,7 +38,11 @@ namespace CoreEscuela
             {
                 WriteLine($"Key: {keyValPair.Key}, Valor: {keyValPair.Value}");
             }
+
+            var diccTemp = engine.ObtenerDiccionarioObjetos();
+
             Printer.DibujarTitulo("Acceso a Diccionario");
+            engine.ImprimirDiccionario(diccTemp);
             WriteLine("Pausa");
         }
         //Se crean las funciones con las diferentes formas de uso

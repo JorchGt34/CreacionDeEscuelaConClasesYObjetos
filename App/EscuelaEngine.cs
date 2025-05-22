@@ -1,4 +1,5 @@
 using CoreEscuela.Entidades;
+using CoreEscuela.Util;
 using Etapa1;
 using Etapa1.Entidades;
 
@@ -17,11 +18,39 @@ namespace CoreEscuela
         }
         //Diccionarios
         //Este metodo crea un diccionario que contiene la escuela y las clases en dos espacios separados dentro de la variable, pero el metodo recibe un objeto escuela que no es compatible con el objeto cursos que le estamos dando, por esta razon se utiliza un cast para poder convertir estos tipos ya que sabemos que si son compatibles por medio de polimorfismo
-        public Dictionary<LlavesDiccionario, IEnumerable<ObjetoEscuelaClase>> ObtenerDiccionarioObjetos(){
-            
+        public void ImprimirDiccionario(Dictionary<LlavesDiccionario, IEnumerable<ObjetoEscuelaClase>> diccionario)
+        {
+            Printer.DibujarLinea();
+            foreach (var obj in diccionario)
+            {
+                Printer.DibujarTitulo($"Llave: {obj.Key}");
+                foreach (var valor in obj.Value)
+                {
+                    Console.WriteLine($"Valores: {valor.Nombre}, UniqueID: {valor.UniqueId}");
+                }
+            }
+        }
+        public Dictionary<LlavesDiccionario, IEnumerable<ObjetoEscuelaClase>> ObtenerDiccionarioObjetos()
+        {
+
             var dicccionario = new Dictionary<LlavesDiccionario, IEnumerable<ObjetoEscuelaClase>>();
-            dicccionario.Add(LlavesDiccionario.Escuela, new[] {Escuela});
+            dicccionario.Add(LlavesDiccionario.Escuela, new[] { Escuela });
             dicccionario.Add(LlavesDiccionario.Cursos, Escuela.Cursos.Cast<ObjetoEscuelaClase>());
+            var listaTempAlum = new List<Alumnos>();
+            var listaTempAsignaturas = new List<Asignaturas>();
+            var listaTempEv = new List<Evaluaciones>();
+            foreach (var curso in Escuela.Cursos)
+            {
+                listaTempAlum.AddRange(curso.Alumno);
+                listaTempAsignaturas.AddRange(curso.Asignaturas);
+                foreach (var alum in curso.Alumno)
+                {
+                    listaTempEv.AddRange(alum.Evaluacion);
+                }
+            }
+            dicccionario.Add(LlavesDiccionario.Alumnos, listaTempAlum.Cast<ObjetoEscuelaClase>());
+            dicccionario.Add(LlavesDiccionario.Asignaturas, listaTempAsignaturas.Cast<ObjetoEscuelaClase>());
+            dicccionario.Add(LlavesDiccionario.Evaluaciones, listaTempEv.Cast<ObjetoEscuelaClase>());
             return dicccionario;
         }
         private IEnumerable<Alumnos> GenerarAlumnosAlAzar(int cantidadAlumnos)
@@ -45,7 +74,7 @@ namespace CoreEscuela
             bool traeAlumnos = true,
             bool traeEvaluaciones = true
             )
-        {return ObtenerObjetosEscuela(out int dummy, out dummy, out dummy, out dummy);}
+        { return ObtenerObjetosEscuela(out int dummy, out dummy, out dummy, out dummy); }
         public IReadOnlyList<ObjetoEscuelaClase> ObtenerObjetosEscuela(
             out int conteoEvaluaciones,
             bool traeCursos = true,
@@ -53,7 +82,7 @@ namespace CoreEscuela
             bool traeAlumnos = true,
             bool traeEvaluaciones = true
             )
-        {return ObtenerObjetosEscuela(out conteoEvaluaciones, out int dummy, out dummy, out dummy);}
+        { return ObtenerObjetosEscuela(out conteoEvaluaciones, out int dummy, out dummy, out dummy); }
         public IReadOnlyList<ObjetoEscuelaClase> ObtenerObjetosEscuela(
             out int conteoEvaluaciones,
             out int conteoAsignaturas,
@@ -62,7 +91,7 @@ namespace CoreEscuela
             bool traeAlumnos = true,
             bool traeEvaluaciones = true
             )
-        {return ObtenerObjetosEscuela(out conteoEvaluaciones, out conteoAsignaturas, out int dummy, out dummy);}
+        { return ObtenerObjetosEscuela(out conteoEvaluaciones, out conteoAsignaturas, out int dummy, out dummy); }
         public IReadOnlyList<ObjetoEscuelaClase> ObtenerObjetosEscuela(
             out int conteoEvaluaciones,
             out int conteoAsignaturas,
@@ -72,14 +101,15 @@ namespace CoreEscuela
             bool traeAlumnos = true,
             bool traeEvaluaciones = true
             )
-        {return ObtenerObjetosEscuela(out conteoEvaluaciones, out conteoAsignaturas, out conteoCursos, out int dummy);}
-        public IReadOnlyList<ObjetoEscuelaClase> ObtenerObjetosEscuela(
+        { return ObtenerObjetosEscuela(out conteoEvaluaciones, out conteoAsignaturas, out conteoCursos, out int dummy); }
+        /*public IReadOnlyList<ObjetoEscuelaClase> ObtenerObjetosEscuela(
             out int conteoEvaluaciones,
             out int conteoAsignaturas,
             out int conteoCursos,
             out int conteoAlumnos
             )
-        {return ObtenerObjetosEscuela(out conteoEvaluaciones, out conteoAsignaturas, out conteoCursos, out conteoAlumnos);}
+        { return ObtenerObjetosEscuela(out conteoEvaluaciones, out conteoAsignaturas, out conteoCursos, out conteoAlumnos); }
+        */
         public IReadOnlyList<ObjetoEscuelaClase> ObtenerObjetosEscuela(
             out int conteoCursos,
             out int conteoAsignaturas,
@@ -97,20 +127,24 @@ namespace CoreEscuela
             //"Add" agrega un objeto, y "AddRange" agrega una lista de objetos
             listaObj.AddRange(Escuela);
 
-            if(traeCursos){
+            if (traeCursos)
+            {
                 listaObj.AddRange(Escuela.Cursos);
                 conteoCursos += Escuela.Cursos.Count;
                 foreach (var curso in Escuela.Cursos)
                 {
-                    if(traeAsignaturas){
+                    if (traeAsignaturas)
+                    {
                         listaObj.AddRange(curso.Asignaturas);
                         conteoAsignaturas += curso.Asignaturas.Count;
                     }
-                    if(traeAlumnos){
+                    if (traeAlumnos)
+                    {
                         listaObj.AddRange(curso.Alumno);
                         conteoAlumnos += curso.Alumno.Count;
                     }
-                    if(traeEvaluaciones){
+                    if (traeEvaluaciones)
+                    {
                         foreach (var alumno in curso.Alumno)
                         {
                             listaObj.AddRange(alumno.Evaluacion);
