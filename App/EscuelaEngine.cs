@@ -18,18 +18,34 @@ namespace CoreEscuela
         }
         //Diccionarios
         //Este metodo crea un diccionario que contiene la escuela y las clases en dos espacios separados dentro de la variable, pero el metodo recibe un objeto escuela que no es compatible con el objeto cursos que le estamos dando, por esta razon se utiliza un cast para poder convertir estos tipos ya que sabemos que si son compatibles por medio de polimorfismo
-        public void ImprimirDiccionario(Dictionary<LlavesDiccionario, IEnumerable<ObjetoEscuelaClase>> diccionario)
+        public void ImprimirDiccionario(Dictionary<LlavesDiccionario, IEnumerable<ObjetoEscuelaClase>> diccionario, bool imprEval = false)
         {
+            //int contador = 0;
             Printer.DibujarLinea();
             foreach (var obj in diccionario)
             {
                 Printer.DibujarTitulo($"Llave: {obj.Key}");
                 foreach (var valor in obj.Value)
                 {
-                    Console.WriteLine($"Valores: {valor.Nombre}, UniqueID: {valor.UniqueId}");
+                    if (valor is Evaluaciones)
+                    {
+                        if (imprEval)
+                            Console.WriteLine(valor);
+                    }
+                    else if (valor is Escuelas)
+                        Console.WriteLine($"Escuela: {valor}");
+                    else if (valor is Alumnos)
+                        Console.WriteLine($"Alumno: {valor.Nombre}");
+                    else
+                        Console.WriteLine($"Valores: {valor.Nombre}, UniqueID: {valor.UniqueId}");
+
                 }
             }
+            //Console.WriteLine($"Valores: {valor.Nombre}, UniqueID: {valor.UniqueId}");
+            //Console.WriteLine($"No quise imprimir {contador} objetos");
         }
+            
+        
         public Dictionary<LlavesDiccionario, IEnumerable<ObjetoEscuelaClase>> ObtenerDiccionarioObjetos()
         {
 
