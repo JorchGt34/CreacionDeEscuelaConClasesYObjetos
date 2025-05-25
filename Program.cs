@@ -23,7 +23,7 @@ namespace CoreEscuela
             Printer.DibujarLinea(20);
 
             //Ya una vez que la escuela de engine tiene iniciado los valores, es posible usarlos
-            ImprimirCursosEscuela(engine.Escuela);
+            //ImprimirCursosEscuela(engine.Escuela);
 
             //var listaDeObj = engine.ObtenerObjetosEscuela(traeEvaluaciones: false);
             var listaDeObj = engine.ObtenerObjetosEscuela();
@@ -42,7 +42,7 @@ namespace CoreEscuela
             var diccTemp = engine.ObtenerDiccionarioObjetos();
 
             Printer.DibujarTitulo("Acceso a Diccionario");
-            engine.ImprimirDiccionario(diccTemp);
+            engine.ImprimirDiccionario(diccTemp, true);
             WriteLine("Pausa");
         }
         //Se crean las funciones con las diferentes formas de uso

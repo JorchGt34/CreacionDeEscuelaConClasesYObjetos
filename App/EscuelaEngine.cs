@@ -27,25 +27,34 @@ namespace CoreEscuela
                 Printer.DibujarTitulo($"Llave: {obj.Key}");
                 foreach (var valor in obj.Value)
                 {
-                    if (valor is Evaluaciones)
+                    switch (obj.Key)
                     {
-                        if (imprEval)
+                        case LlavesDiccionario.Evaluaciones:
+                            if (imprEval)
+                                Console.WriteLine(valor);
+                            break;
+                        case LlavesDiccionario.Escuela:
+                            Console.WriteLine($"Escuela: {valor}");
+                            break;
+                        case LlavesDiccionario.Alumnos:
+                            Console.WriteLine($"Alumno: {valor.Nombre}");
+                            break;
+                        case LlavesDiccionario.Cursos:
+                            //Revisamos que el valor actual sea de tipo cursos para extraer dicha propiedad
+                            var cursoTemp = valor as Cursos;
+                            if (cursoTemp != null)
+                            {
+                                int count = cursoTemp.Alumno.Count;
+                                Console.WriteLine($"Curso: {valor.Nombre}. Cantidad de Alumnos: {count}");
+                            }
+                            break;
+                        default:
                             Console.WriteLine(valor);
+                            break;
                     }
-                    else if (valor is Escuelas)
-                        Console.WriteLine($"Escuela: {valor}");
-                    else if (valor is Alumnos)
-                        Console.WriteLine($"Alumno: {valor.Nombre}");
-                    else
-                        Console.WriteLine($"Valores: {valor.Nombre}, UniqueID: {valor.UniqueId}");
-
                 }
             }
-            //Console.WriteLine($"Valores: {valor.Nombre}, UniqueID: {valor.UniqueId}");
-            //Console.WriteLine($"No quise imprimir {contador} objetos");
         }
-            
-        
         public Dictionary<LlavesDiccionario, IEnumerable<ObjetoEscuelaClase>> ObtenerDiccionarioObjetos()
         {
 
@@ -222,7 +231,8 @@ namespace CoreEscuela
                             {
                                 Nombre = curso.Nombre.ToString()
                             },
-                            Nota = cantidadDoubleRandom
+                            //Aqui se redondea el valor a dos cifras, donde el primer parametro es el que se redondeara, y el segundo valor es a cuantos digitos se redondeará
+                            Nota = Math.Round(cantidadDoubleRandom, 2)
                         };
                         Alum.Evaluacion.Add(evaluacion);
                     }
